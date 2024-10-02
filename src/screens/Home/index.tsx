@@ -1,8 +1,29 @@
-import { Image, Text, TextInput, TouchableOpacity, View } from "react-native"
+import {
+  FlatList,
+  Image,
+  Text,
+  TextInput,
+  TouchableOpacity,
+  View,
+} from "react-native"
 import AntDesign from "@expo/vector-icons/AntDesign"
 
 import { styles } from "./styles"
 import { colors } from "../../constants/colors"
+import { EmptyTaskList } from "../../components/EmptyTaskList"
+import { TasksStatusBar } from "../../components/TasksStatusBar"
+import { TaskItem } from "../../components/TaskItem"
+
+const tasks = [
+  "Integer urna interdum massa libero auctor neque turpis turpis semper.",
+  "Integer urna interdum massa libero auctor neque turpis turpis .",
+  "Integer urna interdum massa libero auctor neque  turpis semper.",
+  "Integer urna interdum massa  auctor neque turpis  semper.",
+  "Integer urna interdum massa libero  neque turpis turpis semper.",
+  "Integer urna  massa libero auctor interdum neque  turpis semper.",
+  "Integer urna  massa libero auctor neque  turpis semper.",
+  "Integer urna interdum  libero auctor neque turpis turpis .",
+]
 
 export function Home() {
   return (
@@ -10,6 +31,7 @@ export function Home() {
       <View style={styles.header}>
         <Image source={require("../../assets/images/logo.png")} />
       </View>
+
       <View style={styles.content}>
         <View style={styles.addTaskContainer}>
           <TextInput
@@ -22,34 +44,14 @@ export function Home() {
           </TouchableOpacity>
         </View>
 
-        <View style={styles.taskStatusBar}>
-          <View style={{ flexDirection: "row", alignItems: "center" }}>
-            <Text style={styles.taskStatusBarTextCreated}>Criadas</Text>
-            <View style={styles.taskStatusBarIndicatorContainer}>
-              <Text style={styles.taskStatusBarIndicator}>0</Text>
-            </View>
-          </View>
-
-          <View style={{ flexDirection: "row", alignItems: "center" }}>
-            <Text style={styles.taskStatusBarTextCompleted}>Concluídas</Text>
-            <View style={styles.taskStatusBarIndicatorContainer}>
-              <Text style={styles.taskStatusBarIndicator}>0</Text>
-            </View>
-          </View>
-        </View>
-
-        <View style={styles.taskList}>
-          <Image
-            source={require("../../assets/images/clipboard.png")}
-            style={{}}
-          />
-          <Text style={styles.taskListEmptyTextBold}>
-            Você ainda não tem tarefas cadastradas
-          </Text>
-          <Text style={styles.taskListEmptyText}>
-            Crie tarefas e organize seus itens a fazer
-          </Text>
-        </View>
+        <TasksStatusBar />
+        <FlatList
+          data={tasks}
+          keyExtractor={(item) => item}
+          ListEmptyComponent={() => <EmptyTaskList />}
+          renderItem={({ item }) => <TaskItem task={item} />}
+          contentContainerStyle={{ gap: 8 }}
+        />
       </View>
     </View>
   )
