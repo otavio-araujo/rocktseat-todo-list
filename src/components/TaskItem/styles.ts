@@ -14,6 +14,7 @@ export const styles = StyleSheet.create({
     backgroundColor: colors.gray[500],
     padding: 12,
     paddingRight: 8,
+    gap: 8,
   },
 
   taskText: {

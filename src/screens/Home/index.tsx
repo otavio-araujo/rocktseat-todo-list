@@ -1,18 +1,19 @@
 import {
-  FlatList,
-  Image,
+  View,
   Text,
+  Image,
+  FlatList,
   TextInput,
   TouchableOpacity,
-  View,
 } from "react-native"
 import AntDesign from "@expo/vector-icons/AntDesign"
 
 import { styles } from "./styles"
 import { colors } from "../../constants/colors"
+
+import { TaskItem } from "../../components/TaskItem"
 import { EmptyTaskList } from "../../components/EmptyTaskList"
 import { TasksStatusBar } from "../../components/TasksStatusBar"
-import { TaskItem } from "../../components/TaskItem"
 
 const tasks = [
   "Integer urna interdum massa libero auctor neque turpis turpis semper.",
@@ -50,7 +51,8 @@ export function Home() {
           keyExtractor={(item) => item}
           ListEmptyComponent={() => <EmptyTaskList />}
           renderItem={({ item }) => <TaskItem task={item} />}
-          contentContainerStyle={{ gap: 8 }}
+          contentContainerStyle={{ gap: 8, marginTop: 20 }}
+          showsVerticalScrollIndicator={false}
         />
       </View>
     </View>

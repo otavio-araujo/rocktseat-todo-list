@@ -8,6 +8,8 @@ export const styles = StyleSheet.create({
     justifyContent: "center",
     paddingVertical: 48,
     paddingHorizontal: 20,
+    borderTopWidth: 1,
+    borderTopColor: colors.gray[400],
   },
 
   emptyTaskListTextBold: {

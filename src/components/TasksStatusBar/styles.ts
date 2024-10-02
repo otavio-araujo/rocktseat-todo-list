@@ -9,8 +9,6 @@ export const styles = StyleSheet.create({
     justifyContent: "space-between",
     marginTop: 32,
     paddingBottom: 20,
-    borderBottomWidth: 1,
-    borderBottomColor: colors.gray[400],
   },
 
   tasksStatusBarTextCreated: {
