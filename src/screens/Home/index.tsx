@@ -11,22 +11,14 @@ import AntDesign from "@expo/vector-icons/AntDesign"
 import { styles } from "./styles"
 import { colors } from "../../constants/colors"
 
-import { TaskItem } from "../../components/TaskItem"
+import { TaskItem, TaskItemProps } from "../../components/TaskItem"
 import { EmptyTaskList } from "../../components/EmptyTaskList"
 import { TasksStatusBar } from "../../components/TasksStatusBar"
-
-const tasks = [
-  "Integer urna interdum massa libero auctor neque turpis turpis semper.",
-  "Integer urna interdum massa libero auctor neque turpis turpis .",
-  "Integer urna interdum massa libero auctor neque  turpis semper.",
-  "Integer urna interdum massa  auctor neque turpis  semper.",
-  "Integer urna interdum massa libero  neque turpis turpis semper.",
-  "Integer urna  massa libero auctor interdum neque  turpis semper.",
-  "Integer urna  massa libero auctor neque  turpis semper.",
-  "Integer urna interdum  libero auctor neque turpis turpis .",
-]
+import { useState } from "react"
 
 export function Home() {
+  const [tasks, setTasks] = useState<TaskItemProps[]>([])
+
   return (
     <View style={styles.container}>
       <View style={styles.header}>
@@ -48,9 +40,9 @@ export function Home() {
         <TasksStatusBar />
         <FlatList
           data={tasks}
-          keyExtractor={(item) => item}
+          keyExtractor={(item) => item.id}
           ListEmptyComponent={() => <EmptyTaskList />}
-          renderItem={({ item }) => <TaskItem task={item} />}
+          renderItem={({ item }) => <TaskItem task={item.task} id={item.id} />}
           contentContainerStyle={{ gap: 8, marginTop: 20 }}
           showsVerticalScrollIndicator={false}
         />

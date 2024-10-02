@@ -5,11 +5,12 @@ import { styles } from "./styles"
 import { colors } from "../../constants/colors"
 import { Checkbox } from "../Checkbox"
 
-type Props = {
+export type TaskItemProps = {
+  id: string
   task: string
 }
 
-export function TaskItem({ task }: Props) {
+export function TaskItem({ id, task }: TaskItemProps) {
   return (
     <View style={styles.container}>
       <Checkbox />
