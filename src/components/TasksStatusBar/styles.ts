@@ -13,13 +13,13 @@ export const styles = StyleSheet.create({
 
   tasksStatusBarTextCreated: {
     fontSize: 14,
-    fontWeight: "bold",
+    fontFamily: "Inter_700Bold",
     color: colors.blue.light,
   },
 
   tasksStatusBarTextCompleted: {
     fontSize: 14,
-    fontWeight: "bold",
+    fontFamily: "Inter_700Bold",
     color: colors.purple.light,
   },
 
@@ -28,8 +28,6 @@ export const styles = StyleSheet.create({
     minWidth: 32,
     borderRadius: 999,
     padding: 8,
-    fontSize: 12,
-    fontWeight: "bold",
     marginLeft: 8,
     alignItems: "center",
     justifyContent: "center",
@@ -37,5 +35,7 @@ export const styles = StyleSheet.create({
 
   tasksStatusBarIndicator: {
     color: colors.gray[200],
+    fontFamily: "Inter_700Bold",
+    fontSize: 12,
   },
 })

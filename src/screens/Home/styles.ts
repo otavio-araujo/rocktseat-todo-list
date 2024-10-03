@@ -51,5 +51,6 @@ export const styles = StyleSheet.create({
     padding: 16,
     color: colors.gray[300],
     fontSize: 16,
+    fontFamily: "Inter_400Regular",
   },
 })

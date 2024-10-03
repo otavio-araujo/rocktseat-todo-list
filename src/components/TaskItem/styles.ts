@@ -21,13 +21,14 @@ export const styles = StyleSheet.create({
     flex: 1,
     color: colors.gray[100],
     fontSize: 14,
-    fontWeight: "bold",
+    fontFamily: "Inter_700Bold",
   },
 
   taskTextCompleted: {
     flex: 1,
     color: colors.gray[300],
     fontSize: 14,
+    fontFamily: "Inter_400Regular",
     textDecorationLine: "line-through",
   },
 

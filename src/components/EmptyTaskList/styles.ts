@@ -15,13 +15,13 @@ export const styles = StyleSheet.create({
   emptyTaskListTextBold: {
     marginTop: 16,
     fontSize: 14,
-    fontWeight: "bold",
+    fontFamily: "Inter_700Bold",
     color: colors.gray[300],
   },
 
   emptyTaskListText: {
     marginTop: 4,
-    fontSize: 14,
+    fontFamily: "Inter_400Regular",
     color: colors.gray[300],
   },
 })

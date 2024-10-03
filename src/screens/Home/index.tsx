@@ -7,7 +7,7 @@ import {
   TouchableOpacity,
   Alert,
 } from "react-native"
-import { useState } from "react"
+import { useEffect, useState } from "react"
 import * as Crypto from "expo-crypto"
 import AntDesign from "@expo/vector-icons/AntDesign"
 
@@ -21,6 +21,7 @@ import { TaskItem, TaskItemProps } from "../../components/TaskItem"
 export function Home() {
   const [tasks, setTasks] = useState<TaskItemProps[]>([])
   const [task, setTask] = useState<string>("")
+  const [tasksCompleted, setTasksCompleted] = useState<number>(0)
 
   function handleAddTask() {
     // Validates id the task is not empty
@@ -91,6 +92,10 @@ export function Home() {
     )
   }
 
+  useEffect(() => {
+    setTasksCompleted(tasks.filter((task) => task.isCompleted).length)
+  }, [tasks])
+
   return (
     <View style={styles.container}>
       <View style={styles.header}>
@@ -114,7 +119,10 @@ export function Home() {
           </TouchableOpacity>
         </View>
 
-        <TasksStatusBar />
+        <TasksStatusBar
+          tasksCreated={tasks.length}
+          tasksCompleted={tasksCompleted}
+        />
         <FlatList
           data={tasks}
           keyExtractor={(item) => item.id}
