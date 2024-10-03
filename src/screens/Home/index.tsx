@@ -23,11 +23,73 @@ export function Home() {
   const [task, setTask] = useState<string>("")
 
   function handleAddTask() {
-    if (!task)
+    // Validates id the task is not empty
+    if (!task.trim()) {
       return Alert.alert(
         "Tarefa vazia",
         "Você não pode adicionar uma tarefa vazia."
       )
+    }
+
+    // Validates if the task is too short
+    if (task.length < 3) {
+      return Alert.alert(
+        "Tarefa muito curta",
+        "Sua tarefa deve conter no mínimo 3 caracteres."
+      )
+    }
+
+    // Validates if the task already exists
+    if (tasks.find((currentTask) => currentTask.task === task)) {
+      return Alert.alert(
+        "Tarefa existente",
+        "Você não pode adicionar uma tarefa que já existe."
+      )
+    }
+
+    const newTask = {
+      id: Crypto.randomUUID(),
+      task,
+      isCompleted: false,
+    }
+
+    setTasks((oldState) => [...oldState, newTask])
+
+    setTask("")
+  }
+
+  function handleRemove({ id }: TaskItemProps) {
+    Alert.alert(
+      "Remover tarefa",
+      "Tem certeza que deseja remover essa tarefa?",
+      [
+        {
+          text: "Não",
+          style: "cancel",
+        },
+        {
+          text: "Sim",
+          onPress: () => {
+            setTasks((oldState) => oldState.filter((task) => task.id !== id))
+          },
+        },
+      ]
+    )
+  }
+
+  function handleCompleted({ id }: TaskItemProps) {
+    return console.warn(id)
+    setTasks((oldState) =>
+      oldState.map((task) => {
+        if (task.id === id) {
+          return {
+            ...task,
+            isCompleted: !task.isCompleted,
+          }
+        }
+        return task
+      })
+    )
   }
 
   return (
@@ -58,7 +120,15 @@ export function Home() {
           data={tasks}
           keyExtractor={(item) => item.id}
           ListEmptyComponent={() => <EmptyTaskList />}
-          renderItem={({ item }) => <TaskItem task={item.task} id={item.id} />}
+          renderItem={({ item }) => (
+            <TaskItem
+              task={item.task}
+              id={item.id}
+              isCompleted={item.isCompleted}
+              onRemove={() => handleRemove(item)}
+              onCompleted={() => handleCompleted(item)}
+            />
+          )}
           contentContainerStyle={{ gap: 8, marginTop: 20 }}
           showsVerticalScrollIndicator={false}
         />

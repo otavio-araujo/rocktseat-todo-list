@@ -19,9 +19,16 @@ export const styles = StyleSheet.create({
 
   taskText: {
     flex: 1,
-    color: colors.gray[300],
+    color: colors.gray[100],
     fontSize: 14,
     fontWeight: "bold",
+  },
+
+  taskTextCompleted: {
+    flex: 1,
+    color: colors.gray[300],
+    fontSize: 14,
+    textDecorationLine: "line-through",
   },
 
   trashButton: {
