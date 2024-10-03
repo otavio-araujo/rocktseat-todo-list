@@ -78,7 +78,6 @@ export function Home() {
   }
 
   function handleCompleted({ id }: TaskItemProps) {
-    return console.warn(id)
     setTasks((oldState) =>
       oldState.map((task) => {
         if (task.id === id) {
@@ -129,7 +128,7 @@ export function Home() {
               onCompleted={() => handleCompleted(item)}
             />
           )}
-          contentContainerStyle={{ gap: 8, marginTop: 20 }}
+          contentContainerStyle={{ gap: 8, marginTop: 20, paddingBottom: 20 }}
           showsVerticalScrollIndicator={false}
         />
       </View>

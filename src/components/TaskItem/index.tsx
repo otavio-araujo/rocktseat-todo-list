@@ -1,9 +1,10 @@
-import { View, Text, TouchableOpacity, Pressable } from "react-native"
+import { useState } from "react"
+import { Ionicons } from "@expo/vector-icons"
 import EvilIcons from "@expo/vector-icons/EvilIcons"
+import { View, Text, TouchableOpacity, Pressable } from "react-native"
 
 import { styles } from "./styles"
 import { colors } from "../../constants/colors"
-import { Checkbox } from "../Checkbox"
 
 export type TaskItemProps = {
   id: string
@@ -20,12 +21,22 @@ export function TaskItem({
   onRemove = () => {},
   onCompleted = () => {},
 }: TaskItemProps) {
+  const [checked, setChecked] = useState(isCompleted)
   return (
     <View style={styles.container}>
-      <Pressable onPress={() => onCompleted(id)}>
-        <Checkbox isCompleted={isCompleted} />
+      <Pressable
+        style={[styles.checkboxBase, checked && styles.checkboxChecked]}
+        onPress={() => {
+          setChecked(!checked)
+          onCompleted(id)
+        }}
+      >
+        {checked && (
+          <Ionicons name="checkmark" size={18} color={colors.gray[100]} />
+        )}
       </Pressable>
-      <Text style={isCompleted ? styles.taskTextCompleted : styles.taskText}>
+
+      <Text style={checked ? styles.taskTextCompleted : styles.taskText}>
         {task}
       </Text>
       <TouchableOpacity style={styles.trashButton} onPress={() => onRemove(id)}>
